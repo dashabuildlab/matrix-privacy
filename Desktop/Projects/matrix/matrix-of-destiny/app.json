@@ -1,0 +1,107 @@
+{
+  "expo": {
+    "name": "Matrix of Destiny",
+    "slug": "matrix-of-destiny",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "matrixofdestiny",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0A1A"
+    },
+    "ios": {
+      "googleServicesFile": "./GoogleService-Info.plist",
+      "bundleIdentifier": "com.matrixofdestiny.app",
+      "entitlements": {
+        "com.apple.developer.in-app-payments": [],
+        "com.apple.developer.applesignin": ["Default"]
+      },
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "Потрібно для голосового вводу в AI-чаті.",
+        "NSCameraUsageDescription": "Потрібно для AI-сканування обличчя у функції «Вище Я».",
+        "NSPhotoLibraryUsageDescription": "Потрібно для вибору фото у функції «AI-сканування Долі».",
+        "UIBackgroundModes": [
+          "audio"
+        ],
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "googleServicesFile": "./google-services.json",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A0A1A"
+      },
+      "package": "com.matrixofdestiny.app",
+      "permissions": [
+        "INTERNET",
+        "VIBRATE",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK",
+        "com.android.vending.BILLING",
+        "android.permission.CAMERA",
+        "android.permission.READ_MEDIA_IMAGES"
+      ]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./assets/icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "@react-native-google-signin/google-signin",
+        {
+          "iosUrlScheme": "com.googleusercontent.apps.149808950885-05t7pen074j9iv2fmf8l1rv52fpklgln"
+        }
+      ],
+      "expo-apple-authentication",
+      "expo-audio",
+      "expo-av",
+      "expo-video",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#7C3AED",
+          "defaultChannel": "default"
+        }
+      ],
+      "expo-sqlite",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+          },
+          "ios": {
+            "deploymentTarget": "15.1",
+            "useFrameworks": "static"
+          }
+        }
+      ],
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "@react-native-firebase/crashlytics",
+      "./plugins/withModularHeaders",
+      "expo-localization",
+      "expo-image-picker"
+    ],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "extra": {
+      "privacyPolicyUrl": "https://dashabuildlab.github.io/matrix-privacy/uk/privacy/",
+      "termsOfUseUrl": "https://yourmatrixofdestiny.com/terms",
+      "router": {}
+    },
+    "owner": "buildapplab"
+  }
+}
