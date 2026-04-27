@@ -373,7 +373,7 @@ export default function PaywallScreen() {
               {locale === 'uk' ? 'Політика конфіденційності' : 'Privacy Policy'}
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => Linking.openURL('https://yourmatrixofdestiny.com/terms')}>
+          <TouchableOpacity onPress={() => Linking.openURL(locale === 'uk' ? 'https://yourmatrixofdestiny.com/uk/terms' : 'https://yourmatrixofdestiny.com/en/terms')}>
             <Text style={[styles.legalText, { textDecorationLine: 'underline' }]}>
               {locale === 'uk' ? 'Умови використання' : 'Terms of Use'}
             </Text>

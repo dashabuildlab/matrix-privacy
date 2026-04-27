@@ -23,6 +23,7 @@
         "NSMicrophoneUsageDescription": "Потрібно для голосового вводу в AI-чаті.",
         "NSCameraUsageDescription": "Потрібно для AI-сканування обличчя у функції «Вище Я».",
         "NSPhotoLibraryUsageDescription": "Потрібно для вибору фото у функції «AI-сканування Долі».",
+        "NSPhotoLibraryAddUsageDescription": "Потрібно для збереження результату AI-портрету у вашу бібліотеку фото.",
         "NSUserTrackingUsageDescription": "Ми використовуємо аналітику для покращення вашого досвіду в додатку. Ваші дані не передаються третім особам для реклами.",
         "UIBackgroundModes": [
           "audio"
@@ -81,9 +82,11 @@
         "expo-build-properties",
         {
           "android": {
+            "targetSdkVersion": 35,
+            "compileSdkVersion": 35
           },
           "ios": {
-            "deploymentTarget": "15.1",
+            "deploymentTarget": "16.0",
             "useFrameworks": "static"
           }
         }
@@ -92,6 +95,7 @@
       "@react-native-firebase/auth",
       "@react-native-firebase/crashlytics",
       "./plugins/withModularHeaders",
+      "./plugins/withPrivacyManifest",
       "expo-localization",
       "expo-image-picker"
     ],
@@ -100,7 +104,7 @@
     ],
     "extra": {
       "privacyPolicyUrl": "https://dashabuildlab.github.io/matrix-privacy/uk/privacy/",
-      "termsOfUseUrl": "https://yourmatrixofdestiny.com/terms",
+      "termsOfUseUrl": "https://yourmatrixofdestiny.com/uk/terms",
       "router": {}
     },
     "owner": "buildapplab"
