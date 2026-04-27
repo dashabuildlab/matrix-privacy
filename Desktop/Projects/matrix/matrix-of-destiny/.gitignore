@@ -1,0 +1,68 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# ── Dependencies ──────────────────────────────────────────────────────────────
+node_modules/
+
+# ── Expo ──────────────────────────────────────────────────────────────────────
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# ── Native build artefacts ────────────────────────────────────────────────────
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.ipa
+*.apk
+*.aab
+
+# ── Credentials & secrets ─────────────────────────────────────────────────────
+credentials.json
+credentials/
+deploy_key
+.env
+.env*.local
+api/serviceAccountKey.json
+
+# ── Firebase config (contains project keys — keep out of VCS) ─────────────────
+GoogleService-Info.plist
+google-services.json
+
+# ── Metro ─────────────────────────────────────────────────────────────────────
+.metro-health-check*
+
+# ── Debug logs ────────────────────────────────────────────────────────────────
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+*.pem
+
+# ── TypeScript ────────────────────────────────────────────────────────────────
+*.tsbuildinfo
+
+# ── Next.js (seo-website) ────────────────────────────────────────────────────
+seo-website/.next/
+seo-website/out/
+seo-website/test-results/
+seo-website/playwright-report/
+
+# ── IDE ───────────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ── Claude Code ───────────────────────────────────────────────────────────────
+.claude/
+seo-website/.claude/
+
+# ── Misc ──────────────────────────────────────────────────────────────────────
+*.zip
+*.rar

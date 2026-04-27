@@ -1,0 +1,448 @@
+@import "tailwindcss" source(none);
+@source "../../src";
+
+:root {
+  --bg: #03020D;
+  --bg2: #07051A;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-hover: rgba(139, 92, 246, 0.10);
+  --primary: #8B5CF6;
+  --primary-dark: #5B21B6;
+  --primary-light: #C4B5FD;
+  --accent: #F5C542;
+  --accent-muted: rgba(245, 197, 66, 0.15);
+  --text: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.80);
+  --text-muted: rgba(255, 255, 255, 0.50);
+  --border: rgba(139, 92, 246, 0.25);
+  --border-accent: rgba(245, 197, 66, 0.25);
+  --radius: 16px;
+  --radius-lg: 24px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.star-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 30%, rgba(255,255,255,1) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 80%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 10%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 15% 85%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 45%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 75% 55%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 85% 35%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 5% 65%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 15%, rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 75%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(0.5px 0.5px at 20% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(0.5px 0.5px at 55% 70%, rgba(255,255,255,0.5) 0%, transparent 100%);
+  animation: twinkle 6s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 0.55; }
+}
+
+/* Nebula background — colorful gradient clouds */
+.nebula-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 60% 45% at 75% 45%, rgba(139, 92, 246, 0.35) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 80% 55%, rgba(56, 189, 248, 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse 40% 30% at 70% 30%, rgba(236, 72, 153, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 55% 40% at 85% 65%, rgba(245, 197, 66, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 50% at 20% 50%, rgba(91, 33, 182, 0.25) 0%, transparent 65%);
+}
+
+/* Floating constellation lines (subtle) */
+.constellation {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(135deg, transparent 49.5%, rgba(245,197,66,0.15) 49.7%, rgba(245,197,66,0.15) 50.3%, transparent 50.5%),
+    linear-gradient(45deg, transparent 49.5%, rgba(139,92,246,0.12) 49.7%, rgba(139,92,246,0.12) 50.3%, transparent 50.5%);
+  background-size: 260px 260px, 320px 320px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
+}
+
+.glow-purple {
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
+}
+
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(12px);
+  transition: border-color 0.25s, background 0.25s, transform 0.2s;
+}
+.glass-card:hover {
+  border-color: var(--primary);
+  background: var(--card-hover);
+  transform: translateY(-3px);
+}
+
+/* ── Bento grid for Features ── */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+@media (max-width: 900px) {
+  .bento-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .bento-grid { grid-template-columns: 1fr; }
+}
+.bento-grid .span-2 { grid-column: span 2; }
+@media (max-width: 560px) {
+  .bento-grid .span-2 { grid-column: span 1; }
+}
+
+.feature-card {
+  position: relative;
+  background: rgba(30, 20, 50, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 28px;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+.feature-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: radial-gradient(circle at 20% 0%, rgba(138, 43, 226, 0.15), transparent 55%);
+  pointer-events: none;
+  opacity: 0.8;
+}
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(138, 43, 226, 0.55);
+  box-shadow: 0 10px 40px rgba(138, 43, 226, 0.25);
+}
+.feature-card.accent:hover {
+  border-color: rgba(245, 197, 66, 0.55);
+  box-shadow: 0 10px 40px rgba(245, 197, 66, 0.2);
+}
+
+.icon-glow {
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.35), rgba(75, 0, 130, 0.45));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #F5C542;
+  filter: drop-shadow(0 0 10px rgba(245, 197, 66, 0.35));
+  margin-bottom: 20px;
+}
+.icon-glow.accent {
+  background: linear-gradient(135deg, rgba(245, 197, 66, 0.18), rgba(245, 197, 66, 0.05));
+  border-color: rgba(245, 197, 66, 0.35);
+}
+
+.energy-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: var(--accent);
+  font-weight: 800;
+  font-size: 18px;
+  border: 2px solid rgba(245, 197, 66, 0.4);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #8A2BE2, #4B0082);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 0 20px rgba(138, 43, 226, 0.55), 0 0 40px rgba(138, 43, 226, 0.25);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 30px rgba(138, 43, 226, 0.9), 0 0 60px rgba(138, 43, 226, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--text);
+  border: 1px solid rgba(245, 197, 66, 0.5);
+  border-radius: 14px;
+  padding: 14px 28px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: border-color 0.25s, box-shadow 0.3s ease, transform 0.15s;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(245, 197, 66, 0.18);
+}
+.btn-secondary:hover {
+  border-color: rgba(245, 197, 66, 0.9);
+  box-shadow: 0 0 25px rgba(245, 197, 66, 0.35);
+  transform: translateY(-2px);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Golden shimmer title (used on hero) */
+.gold-title {
+  background: linear-gradient(90deg, #F9D423 0%, #F5C542 45%, #E6A817 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 12px rgba(249, 212, 35, 0.35));
+}
+
+/* Hero badge (year pill) */
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(245, 197, 66, 0.45);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 18px rgba(245, 197, 66, 0.18);
+}
+.hero-pill::before {
+  content: '';
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #F5C542 0%, #8A5A00 70%);
+  box-shadow: 0 0 10px rgba(245, 197, 66, 0.9);
+}
+
+.hero-glow {
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
+  height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  padding: 24px 0;
+}
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.matrix-result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* ── How It Works — Нитка Долі ── */
+
+/* Horizontal thread (desktop) */
+.destiny-thread {
+  position: absolute;
+  top: 40px;
+  left: 16%;
+  right: 16%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(139, 92, 246, 0.4) 20%, rgba(139, 92, 246, 0.4) 80%, transparent 100%);
+  z-index: 0;
+  overflow: visible;
+}
+
+/* Animated orb moving along the horizontal thread */
+.destiny-thread-orb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #C4B5FD 0%, #8B5CF6 60%, transparent 100%);
+  box-shadow: 0 0 12px 4px rgba(139, 92, 246, 0.8);
+  animation: orb-travel-h 4s ease-in-out infinite;
+}
+
+@keyframes orb-travel-h {
+  0%   { left: 0%;   opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Vertical thread (mobile) */
+.destiny-thread-vertical {
+  position: absolute;
+  top: 80px;
+  bottom: 80px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent 0%, rgba(139, 92, 246, 0.4) 20%, rgba(139, 92, 246, 0.4) 80%, transparent 100%);
+  z-index: 0;
+}
+
+.destiny-thread-orb-vertical {
+  position: absolute;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, -50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #C4B5FD 0%, #8B5CF6 60%, transparent 100%);
+  box-shadow: 0 0 12px 4px rgba(139, 92, 246, 0.8);
+  animation: orb-travel-v 4s ease-in-out infinite;
+}
+
+@keyframes orb-travel-v {
+  0%   { top: 0%;   opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Glass sphere icon container */
+.destiny-sphere {
+  position: relative;
+  z-index: 1;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: rgba(91, 33, 182, 0.18);
+  border: 1.5px solid rgba(139, 92, 246, 0.3);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-light);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, color 0.35s ease;
+}
+
+.destiny-step:hover .destiny-sphere {
+  background: rgba(139, 92, 246, 0.28);
+  border-color: rgba(196, 181, 253, 0.7);
+  box-shadow: 0 0 28px rgba(139, 92, 246, 0.55), inset 0 0 20px rgba(139, 92, 246, 0.12);
+  color: #FFFFFF;
+}
+
+/* ── Card Flip Animation ── */
+.card-flip-container {
+  perspective: 800px;
+}
+.card-flip-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-flipped {
+  transform: rotateY(180deg);
+}
+.card-flip-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.card-flip-front {
+  transform: rotateY(180deg);
+}
+.card-flip-back {
+  transform: rotateY(0deg);
+}
+
+/* ── Spread grid layouts ── */
+.spread-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* ── Yes/No result badges ── */
+.yesno-yes {
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+.yesno-no {
+  color: #F87171;
+  background: rgba(248, 113, 113, 0.12);
+  border-color: rgba(248, 113, 113, 0.3);
+}
+.yesno-maybe {
+  color: var(--accent);
+  background: var(--accent-muted);
+  border-color: var(--border-accent);
+}
+

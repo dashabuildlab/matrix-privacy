@@ -1,0 +1,31 @@
+services:
+  api:
+    build: ./api
+    # Shared docker network so seo-website can reach it via DNS name `api`.
+    # Not on host network — that prevents nginx in seo-website (on a custom bridge)
+    # from routing back to host's 3101 reliably.
+    ports:
+      - "3101:3101"
+    env_file:
+      - .env
+    environment:
+      PORT: "3101"
+    # Host mapping so /api/claude can still proxy to matrixofdestinytarot.com if needed
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+    mem_limit: 384m
+    memswap_limit: 384m
+
+  # ── Combined site on port 3006 ───────────────────────────────────────────────
+  # Next.js static export (SEO pages) served at /  +  Expo web build mounted at /app
+  # Expo web bundle comes from deploy-runner: `npx expo export --platform web` → ./dist
+  seo-website:
+    build: ./seo-website
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "3006:80"
+    volumes:
+      - ./dist:/usr/share/nginx/html/app:ro
+    restart: unless-stopped
