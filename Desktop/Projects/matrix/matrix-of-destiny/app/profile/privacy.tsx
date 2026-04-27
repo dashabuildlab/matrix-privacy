@@ -8,6 +8,7 @@ import { Card } from '@/components/ui/Card';
 import { useAppStore } from '@/stores/useAppStore';
 import { useI18n } from '@/lib/i18n';
 import { setCrashlyticsEnabled } from '@/lib/crashlytics';
+import { clearAllSessionsSync } from '@/lib/chatDb';
 
 export default function PrivacyScreen() {
   const router = useRouter();
@@ -28,16 +29,17 @@ export default function PrivacyScreen() {
     useAppStore.setState({
       savedMatrices: [],
       dailyMatrixHistory: [],
-      chatSessions: [],
       activeSessionId: null,
       gameRecords: {},
       xp: 0,
       level: 1,
       streak: 0,
-      lastActiveDate: '',
+      lastVisitDate: null,
       unlockedAchievementIds: [],
       viewedAchievementIds: [],
     });
+    // Chat sessions live in SQLite, not Zustand — clear them separately
+    clearAllSessionsSync();
     setShowClearModal(false);
     setCleared(true);
     setTimeout(() => setCleared(false), 2000);

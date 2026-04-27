@@ -214,7 +214,7 @@ export default function PaywallScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
       {/* Close button */}
-      <TouchableOpacity style={styles.closeBtn} onPress={() => { trackPaywallDismissed(selectedPlan); router.back(); }}>
+      <TouchableOpacity testID="paywall-close-btn" style={styles.closeBtn} onPress={() => { trackPaywallDismissed(selectedPlan); router.back(); }}>
         <Ionicons name="close" size={24} color={Colors.textMuted} />
       </TouchableOpacity>
 
@@ -261,6 +261,7 @@ export default function PaywallScreen() {
         {PLANS.map((plan) => (
           <TouchableOpacity
             key={plan.id}
+            testID={`paywall-plan-${plan.id}`}
             style={[styles.planCard, selectedPlan === plan.id && styles.planCardSelected]}
             onPress={() => setSelectedPlan(plan.id)}
             activeOpacity={0.8}
@@ -284,7 +285,7 @@ export default function PaywallScreen() {
                   )}
                 </View>
                 <View style={styles.planPriceGroup}>
-                  <Text style={styles.planPrice}>{plan.price}</Text>
+                  <Text testID={`paywall-price-${plan.id}`} style={styles.planPrice}>{plan.price}</Text>
                   <Text style={styles.planPricePerMonth}>{plan.pricePerMonth}</Text>
                 </View>
                 <View style={[styles.planRadio, selectedPlan === plan.id && styles.planRadioSelected]}>
@@ -315,7 +316,26 @@ export default function PaywallScreen() {
 
       {/* CTA */}
       <View style={styles.ctaSection}>
+        {/* Auto-renewal disclosure — required by Apple & Google before the purchase button */}
+        {(() => {
+          const plan = PLANS.find((p) => p.id === selectedPlan);
+          if (!plan) return null;
+          const periodLabel = selectedPlan === 'yearly'
+            ? (locale === 'uk' ? 'рік' : 'year')
+            : selectedPlan === 'monthly'
+              ? (locale === 'uk' ? 'місяць' : 'month')
+              : (locale === 'uk' ? 'тиждень' : 'week');
+          return (
+            <Text style={styles.renewalDisclosure}>
+              {locale === 'uk'
+                ? `${plan.price} / ${periodLabel} · автоматичне поновлення`
+                : `${plan.price} / ${periodLabel} · auto-renews`}
+            </Text>
+          );
+        })()}
+
         <TouchableOpacity
+          testID="paywall-subscribe-btn"
           style={[styles.subscribeBtn, isLoading && { opacity: 0.7 }]}
           onPress={handleSubscribe}
           disabled={isLoading}
@@ -340,7 +360,7 @@ export default function PaywallScreen() {
           </LinearGradient>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={handleRestore} style={styles.restoreBtn}>
+        <TouchableOpacity testID="paywall-restore-btn" onPress={handleRestore} style={styles.restoreBtn}>
           <Text style={styles.restoreText}>{t.paywall.restorePurchases}</Text>
         </TouchableOpacity>
 
@@ -602,6 +622,13 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 
+  renewalDisclosure: {
+    color: Colors.textSecondary,
+    fontSize: FontSize.sm,
+    textAlign: 'center',
+    fontWeight: '500',
+    marginBottom: Spacing.sm,
+  },
   legalText: {
     color: Colors.textMuted,
     fontSize: FontSize.xs,
