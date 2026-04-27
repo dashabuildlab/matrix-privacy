@@ -316,6 +316,11 @@ export default function PaywallScreen() {
 
       {/* CTA */}
       <View style={styles.ctaSection}>
+        {/* Subscription name — required by Apple (must be visible before purchase button) */}
+        <Text style={styles.subscriptionName}>
+          {locale === 'uk' ? 'Matrix of Destiny Premium' : 'Matrix of Destiny Premium'}
+        </Text>
+
         {/* Auto-renewal disclosure — required by Apple & Google before the purchase button */}
         {(() => {
           const plan = PLANS.find((p) => p.id === selectedPlan);
@@ -368,7 +373,11 @@ export default function PaywallScreen() {
           {t.paywall.legalText}
         </Text>
         <View style={{ flexDirection: 'row', justifyContent: 'center', gap: 16, marginTop: 8 }}>
-          <TouchableOpacity onPress={() => Linking.openURL('https://dashabuildlab.github.io/matrix-privacy/uk/privacy/')}>
+          <TouchableOpacity onPress={() => Linking.openURL(
+            locale === 'uk'
+              ? 'https://dashabuildlab.github.io/matrix-privacy/uk/privacy/'
+              : 'https://yourmatrixofdestiny.com/en/privacy'
+          )}>
             <Text style={[styles.legalText, { textDecorationLine: 'underline' }]}>
               {locale === 'uk' ? 'Політика конфіденційності' : 'Privacy Policy'}
             </Text>
@@ -622,6 +631,14 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
 
+  subscriptionName: {
+    color: Colors.text,
+    fontSize: FontSize.md,
+    fontWeight: '700',
+    textAlign: 'center',
+    letterSpacing: 0.3,
+    marginBottom: 4,
+  },
   renewalDisclosure: {
     color: Colors.textSecondary,
     fontSize: FontSize.sm,

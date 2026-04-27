@@ -604,7 +604,7 @@ const en: Translations = {
     tryPlan: (label: string) => `Try ${label}`,
     restorePurchases: 'Restore purchases',
     restoreTitle: 'Restore',
-    legalText: 'Subscription automatically renews at the price of the selected plan at the end of each billing period unless cancelled at least 24 hours before the end of the current period. You may cancel at any time in your App Store or Google Play settings. Payment is charged to your iTunes/Google Play account upon purchase confirmation. By subscribing, you agree to our Terms of Use and Privacy Policy.',
+    legalText: '"Matrix of Destiny Premium" subscription automatically renews at the price of the selected plan at the end of each billing cycle unless cancelled at least 24 hours before the end of the current period. You may cancel at any time in your App Store or Google Play account settings. Payment is charged to your iTunes/Google Play account upon purchase confirmation. By subscribing, you agree to our Terms of Use and Privacy Policy.',
     testimonial1Name: 'Oksana',
     testimonial1Text: 'I understand myself so much better! The AI matrix analysis is amazing!',
     testimonial2Name: 'Dmytro',
