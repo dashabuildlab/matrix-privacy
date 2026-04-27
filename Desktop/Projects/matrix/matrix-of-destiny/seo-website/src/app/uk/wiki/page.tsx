@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Вікі Матриці Долі — все про 22 енергії та значення позицій',
   description: 'Повний довідник по Матриці Долі: 22 енергії, зони грошей, здоров\'я, карми, талантів. Детальний опис кожного числа від 1 до 22.',
   alternates: {
-    canonical: 'https://matrixofdestinytarot.com/uk/wiki/',
+    canonical: 'https://yourmatrixofdestiny.com/uk/wiki/',
     languages: { uk: '/uk/wiki/', en: '/en/wiki/' },
   },
 };
@@ -17,8 +17,8 @@ export default function WikiPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://matrixofdestinytarot.com/uk/' },
-      { '@type': 'ListItem', position: 2, name: 'Вікі', item: 'https://matrixofdestinytarot.com/uk/wiki/' },
+      { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://yourmatrixofdestiny.com/uk/' },
+      { '@type': 'ListItem', position: 2, name: 'Вікі', item: 'https://yourmatrixofdestiny.com/uk/wiki/' },
     ],
   };
 

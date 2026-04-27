@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: 'Matrix of Destiny online — free calculation ✦ Matrix of Destiny',
   description: 'Calculate your Destiny Matrix for free by date of birth. 22 energies, karma, talents and purpose. Deep AI analysis. Over 50,000 calculations. Try now →',
   alternates: {
-    canonical: 'https://matrixofdestinytarot.com/en/',
+    canonical: 'https://yourmatrixofdestiny.com/en/',
     languages: { uk: '/uk/', en: '/en/' },
   },
 };
@@ -23,7 +23,7 @@ export default function HomePageEn() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Matrix of Destiny',
-    url: 'https://matrixofdestinytarot.com',
+    url: 'https://yourmatrixofdestiny.com',
     inLanguage: ['uk', 'en'],
   };
 
@@ -31,7 +31,7 @@ export default function HomePageEn() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'Destiny Matrix Calculator',
-    url: 'https://matrixofdestinytarot.com/en/',
+    url: 'https://yourmatrixofdestiny.com/en/',
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'All',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },

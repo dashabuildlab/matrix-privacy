@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: 'Матриця Долі онлайн — безкоштовний розрахунок ✦ Matrix of Destiny',
   description: 'Розрахуй свою Матрицю Долі безкоштовно за датою народження. 22 енергії, карма, таланти і призначення. AI-провідник. Матриця дня. Понад 50 000 розрахунків.',
   alternates: {
-    canonical: 'https://matrixofdestinytarot.com/uk/',
+    canonical: 'https://yourmatrixofdestiny.com/uk/',
     languages: { uk: '/uk/', en: '/en/' },
   },
 };
@@ -28,11 +28,11 @@ export default function HomePage() {
     '@type': 'WebSite',
     name: 'Matrix of Destiny',
     alternateName: 'Матриця Долі',
-    url: 'https://matrixofdestinytarot.com',
+    url: 'https://yourmatrixofdestiny.com',
     inLanguage: ['uk', 'en'],
     potentialAction: {
       '@type': 'SearchAction',
-      target: 'https://matrixofdestinytarot.com/uk/wiki/{search_term_string}/',
+      target: 'https://yourmatrixofdestiny.com/uk/wiki/{search_term_string}/',
       'query-input': 'required name=search_term_string',
     },
   };
@@ -41,7 +41,7 @@ export default function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'Калькулятор Матриці Долі',
-    url: 'https://matrixofdestinytarot.com/uk/kalkulyator-matrytsi-doli/',
+    url: 'https://yourmatrixofdestiny.com/uk/kalkulyator-matrytsi-doli/',
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'All',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'UAH' },

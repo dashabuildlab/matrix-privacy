@@ -4,10 +4,10 @@ import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: 'https://matrixofdestinytarot.com/en/',
+    canonical: 'https://yourmatrixofdestiny.com/en/',
     languages: {
-      'uk': 'https://matrixofdestinytarot.com/uk/',
-      'en': 'https://matrixofdestinytarot.com/en/',
+      'uk': 'https://yourmatrixofdestiny.com/uk/',
+      'en': 'https://yourmatrixofdestiny.com/en/',
     },
   },
 };
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
 export default function EnLayout({ children }: { children: React.ReactNode }) {
   return (
     <div lang="en">
-      <Header />
+      <Header locale="en" />
       <main className="relative z-10 pt-[72px]">{children}</main>
-      <Footer />
+      <Footer locale="en" />
     </div>
   );
 }

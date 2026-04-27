@@ -111,7 +111,10 @@ export default function AiChatClient() {
     }
 
     try {
-      const res = await fetch('/api/claude', {
+      const apiBase = typeof window !== 'undefined' && window.location.hostname !== 'yourmatrixofdestiny.com'
+        ? 'https://yourmatrixofdestiny.com'
+        : '';
+      const res = await fetch(`${apiBase}/api/claude`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

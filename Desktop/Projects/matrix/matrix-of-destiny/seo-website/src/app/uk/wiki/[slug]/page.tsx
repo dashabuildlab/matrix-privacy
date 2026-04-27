@@ -39,7 +39,7 @@ export function generateMetadata({ params }: { params: Promise<{ slug: string }>
         title: `${energy.name} (${energy.id}) — Енергія Матриці Долі | ${energy.arcana}`,
         description: `${energy.name} в Матриці Долі: ${energy.keywords.join(', ')}. ${energy.positive.slice(0, 120)}...`,
         alternates: {
-          canonical: `https://matrixofdestinytarot.com/uk/wiki/${slug}/`,
+          canonical: `https://yourmatrixofdestiny.com/uk/wiki/${slug}/`,
           languages: { uk: `/uk/wiki/${slug}/`, en: `/en/wiki/${slug}/` },
         },
         openGraph: {
@@ -55,7 +55,7 @@ export function generateMetadata({ params }: { params: Promise<{ slug: string }>
         title: article.metaTitle,
         description: article.metaDesc,
         alternates: {
-          canonical: `https://matrixofdestinytarot.com/uk/wiki/${slug}/`,
+          canonical: `https://yourmatrixofdestiny.com/uk/wiki/${slug}/`,
           languages: { uk: `/uk/wiki/${slug}/`, en: `/en/wiki/${slug}/` },
         },
       };
@@ -78,7 +78,7 @@ export default async function WikiArticlePage({ params }: { params: Promise<{ sl
       '@context': 'https://schema.org',
       '@type': 'Article',
       headline: article.title,
-      url: `https://matrixofdestinytarot.com/uk/wiki/${slug}/`,
+      url: `https://yourmatrixofdestiny.com/uk/wiki/${slug}/`,
       inLanguage: 'uk',
       publisher: { '@type': 'Organization', name: 'Matrix of Destiny' },
     };
@@ -86,9 +86,9 @@ export default async function WikiArticlePage({ params }: { params: Promise<{ sl
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://matrixofdestinytarot.com/uk/' },
-        { '@type': 'ListItem', position: 2, name: 'Вікі', item: 'https://matrixofdestinytarot.com/uk/wiki/' },
-        { '@type': 'ListItem', position: 3, name: article.title, item: `https://matrixofdestinytarot.com/uk/wiki/${slug}/` },
+        { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://yourmatrixofdestiny.com/uk/' },
+        { '@type': 'ListItem', position: 2, name: 'Вікі', item: 'https://yourmatrixofdestiny.com/uk/wiki/' },
+        { '@type': 'ListItem', position: 3, name: article.title, item: `https://yourmatrixofdestiny.com/uk/wiki/${slug}/` },
       ],
     };
     return (
@@ -125,7 +125,7 @@ export default async function WikiArticlePage({ params }: { params: Promise<{ sl
     '@type': 'Article',
     headline: `${e.name} — Енергія ${e.id} в Матриці Долі`,
     description: `${e.positive.slice(0, 150)}`,
-    url: `https://matrixofdestinytarot.com/uk/wiki/${slug}/`,
+    url: `https://yourmatrixofdestiny.com/uk/wiki/${slug}/`,
     inLanguage: 'uk',
     publisher: { '@type': 'Organization', name: 'Matrix of Destiny' },
   };
@@ -142,9 +142,9 @@ export default async function WikiArticlePage({ params }: { params: Promise<{ sl
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://matrixofdestinytarot.com/uk/' },
-      { '@type': 'ListItem', position: 2, name: 'Вікі', item: 'https://matrixofdestinytarot.com/uk/wiki/' },
-      { '@type': 'ListItem', position: 3, name: `${e.name} (${e.id})`, item: `https://matrixofdestinytarot.com/uk/wiki/${slug}/` },
+      { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://yourmatrixofdestiny.com/uk/' },
+      { '@type': 'ListItem', position: 2, name: 'Вікі', item: 'https://yourmatrixofdestiny.com/uk/wiki/' },
+      { '@type': 'ListItem', position: 3, name: `${e.name} (${e.id})`, item: `https://yourmatrixofdestiny.com/uk/wiki/${slug}/` },
     ],
   };
 

@@ -10,6 +10,7 @@ import {
   onAuthStateChanged as fbOnAuthStateChanged,
   signInWithPopup,
   GoogleAuthProvider,
+  OAuthProvider,
   setPersistence,
   browserLocalPersistence,
   type User,
@@ -17,12 +18,12 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCl5ODdkLWUdwLfoLqe1zH4np4zxzb3eWg',
-  authDomain: 'matrix-of-destiny-and-tarot.firebaseapp.com',
-  projectId: 'matrix-of-destiny-and-tarot',
-  storageBucket: 'matrix-of-destiny-and-tarot.firebasestorage.app',
-  messagingSenderId: '113578995852',
-  appId: '1:113578995852:web:6cc1368ee5b89e58ef0ba9',
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
 
 let _app: FirebaseApp | null = null;
@@ -72,6 +73,14 @@ export async function sendPasswordReset(email: string): Promise<void> {
 export async function signInWithGoogle() {
   const provider = new GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
+  const { user } = await signInWithPopup(getFirebaseAuth(), provider);
+  return user;
+}
+
+export async function signInWithApple() {
+  const provider = new OAuthProvider('apple.com');
+  provider.addScope('email');
+  provider.addScope('name');
   const { user } = await signInWithPopup(getFirebaseAuth(), provider);
   return user;
 }

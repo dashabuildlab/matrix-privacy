@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Калькулятор Матриці Долі онлайн — розрахунок за датою народження',
   description: 'Введи дату народження і отримай повну Матрицю Долі безкоштовно. Дізнайся призначення, таланти, карму і сумісність з партнером. ✦',
   alternates: {
-    canonical: 'https://matrixofdestinytarot.com/uk/kalkulyator-matrytsi-doli/',
+    canonical: 'https://yourmatrixofdestiny.com/uk/kalkulyator-matrytsi-doli/',
     languages: {
       uk: '/uk/kalkulyator-matrytsi-doli/',
       en: '/en/kalkulyator-matrytsi-doli/',
@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Калькулятор Матриці Долі онлайн — розрахунок за датою народження',
     description: 'Введи дату народження і отримай повну Матрицю Долі безкоштовно. Дізнайся призначення, таланти, карму і сумісність.',
-    url: 'https://matrixofdestinytarot.com/uk/kalkulyator-matrytsi-doli/',
+    url: 'https://yourmatrixofdestiny.com/uk/kalkulyator-matrytsi-doli/',
   },
 };
 
@@ -51,7 +51,7 @@ export default function CalculatorPage() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'Калькулятор Матриці Долі',
-    url: 'https://matrixofdestinytarot.com/uk/kalkulyator-matrytsi-doli/',
+    url: 'https://yourmatrixofdestiny.com/uk/kalkulyator-matrytsi-doli/',
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'All',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'UAH' },
@@ -63,8 +63,8 @@ export default function CalculatorPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://matrixofdestinytarot.com/uk/' },
-      { '@type': 'ListItem', position: 2, name: 'Калькулятор Матриці Долі', item: 'https://matrixofdestinytarot.com/uk/kalkulyator-matrytsi-doli/' },
+      { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://yourmatrixofdestiny.com/uk/' },
+      { '@type': 'ListItem', position: 2, name: 'Калькулятор Матриці Долі', item: 'https://yourmatrixofdestiny.com/uk/kalkulyator-matrytsi-doli/' },
     ],
   };
 

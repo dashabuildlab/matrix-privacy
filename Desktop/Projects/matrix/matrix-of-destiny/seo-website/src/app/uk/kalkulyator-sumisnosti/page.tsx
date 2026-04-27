@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: 'Сумісність за Матрицею Долі — перевір свою пару безкоштовно',
   description: 'Введіть дати народження двох людей і дізнайся сумісність за Матрицею Долі. Любов, карма, спільне призначення і виклики.',
   alternates: {
-    canonical: 'https://matrixofdestinytarot.com/uk/kalkulyator-sumisnosti/',
+    canonical: 'https://yourmatrixofdestiny.com/uk/kalkulyator-sumisnosti/',
     languages: { uk: '/uk/kalkulyator-sumisnosti/', en: '/en/kalkulyator-sumisnosti/' },
   },
 };
@@ -16,8 +16,8 @@ export default function CompatibilityPage() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://matrixofdestinytarot.com/uk/' },
-      { '@type': 'ListItem', position: 2, name: 'Калькулятор сумісності', item: 'https://matrixofdestinytarot.com/uk/kalkulyator-sumisnosti/' },
+      { '@type': 'ListItem', position: 1, name: 'Головна', item: 'https://yourmatrixofdestiny.com/uk/' },
+      { '@type': 'ListItem', position: 2, name: 'Калькулятор сумісності', item: 'https://yourmatrixofdestiny.com/uk/kalkulyator-sumisnosti/' },
     ],
   };
 
@@ -25,7 +25,7 @@ export default function CompatibilityPage() {
     '@context': 'https://schema.org',
     '@type': 'WebApplication',
     name: 'Калькулятор Сумісності за Матрицею Долі',
-    url: 'https://matrixofdestinytarot.com/uk/kalkulyator-sumisnosti/',
+    url: 'https://yourmatrixofdestiny.com/uk/kalkulyator-sumisnosti/',
     applicationCategory: 'LifestyleApplication',
     operatingSystem: 'All',
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'UAH' },

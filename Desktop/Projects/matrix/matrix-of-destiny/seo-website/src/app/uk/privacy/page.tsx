@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Політика конфіденційності',
-  description: 'Політика конфіденційності сайту matrixofdestinytarot.com',
+  description: 'Політика конфіденційності сайту yourmatrixofdestiny.com',
   robots: { index: false, follow: false },
 };
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://matrixofdestinytarot.com'),
+  metadataBase: new URL('https://yourmatrixofdestiny.com'),
   title: {
     default: 'Матриця Долі онлайн — безкоштовний розрахунок ✦ Matrix of Destiny',
     template: '%s | Matrix of Destiny',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     siteName: 'Matrix of Destiny',
     title: 'Матриця Долі онлайн — безкоштовний розрахунок',
     description: 'Розрахуй свою Матрицю Долі безкоштовно за датою народження. 22 енергії, карма, таланти і призначення.',
-    url: 'https://matrixofdestinytarot.com',
+    url: 'https://yourmatrixofdestiny.com',
   },
   twitter: {
     card: 'summary_large_image',
@@ -30,10 +30,10 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   alternates: {
-    canonical: 'https://matrixofdestinytarot.com/uk/',
+    canonical: 'https://yourmatrixofdestiny.com/uk/',
     languages: {
-      'uk': 'https://matrixofdestinytarot.com/uk/',
-      'en': 'https://matrixofdestinytarot.com/en/',
+      'uk': 'https://yourmatrixofdestiny.com/uk/',
+      'en': 'https://yourmatrixofdestiny.com/en/',
     },
   },
 };

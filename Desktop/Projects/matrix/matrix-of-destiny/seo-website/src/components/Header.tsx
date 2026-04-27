@@ -5,9 +5,12 @@ import { usePathname } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { onAuthStateChanged, signOut, type User } from '@/lib/firebase';
 import AuthModal from '@/components/AuthModal';
+import { getTranslations, getRoutes, type Locale } from '@/lib/i18n';
 
-export default function Header() {
+export default function Header({ locale }: { locale: Locale }) {
   const pathname = usePathname();
+  const t = getTranslations(locale);
+  const r = getRoutes(locale);
   const [menuOpen, setMenuOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [authOpen, setAuthOpen] = useState(false);
@@ -19,7 +22,6 @@ export default function Header() {
     return onAuthStateChanged(setUser);
   }, []);
 
-  // Close user dropdown on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
@@ -31,36 +33,35 @@ export default function Header() {
   }, []);
 
   const navLinks = [
-    { href: '/uk/', label: 'Головна' },
-    { href: '/uk/kalkulyator-matrytsi-doli/', label: 'Калькулятор' },
-    { href: '/uk/kalkulyator-sumisnosti/', label: 'Сумісність' },
-    { href: '/uk/matrytsya-dnya/', label: 'Матриця дня' },
-    { href: '/uk/ai-chat/', label: 'AI-провідник' },
-    { href: '/uk/wiki/', label: 'Вікі' },
+    { href: r.home, label: t.nav.home },
+    { href: r.calculator, label: t.nav.calculator },
+    { href: r.compatibility, label: t.nav.compatibility },
+    { href: r.dailyMatrix, label: t.nav.dailyMatrix },
+    { href: r.aiChat, label: t.nav.aiChat },
+    { href: r.wiki, label: t.nav.wiki },
+    { href: r.privacy, label: t.nav.privacy },
   ];
 
   const openLogin = () => { setAuthMode('login'); setAuthOpen(true); };
   const openRegister = () => { setAuthMode('register'); setAuthOpen(true); };
 
-  const displayName = user?.displayName || user?.email?.split('@')[0] || 'Профіль';
+  const displayName = user?.displayName || user?.email?.split('@')[0] || t.nav.profile;
   const initials = displayName.slice(0, 2).toUpperCase();
 
   return (
     <>
       <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[rgba(3,2,13,0.80)] border-b border-[var(--border)]">
         <div className="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between gap-4">
-          {/* Logo */}
-          <Link href="/uk/" className="flex items-center gap-2.5 no-underline flex-shrink-0">
+          <Link href={r.home} className="flex items-center gap-2.5 no-underline flex-shrink-0">
             <div className="w-9 h-9 rounded-[10px] bg-gradient-to-br from-[var(--primary-dark)] to-[var(--primary)] flex items-center justify-center">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F5C542" strokeWidth="2">
                 <circle cx="12" cy="12" r="10"/>
                 <path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M19.07 4.93L4.93 19.07"/>
               </svg>
             </div>
-            <span className="text-[17px] font-extrabold text-white tracking-tight">Matrix of Destiny</span>
+            <span className="text-[17px] font-extrabold text-white tracking-tight">{t.siteName}</span>
           </Link>
 
-          {/* Desktop nav */}
           <div className="hidden lg:flex items-center gap-5 flex-1 justify-center">
             {navLinks.map(link => (
               <Link
@@ -77,7 +78,6 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Auth area */}
           <div className="flex items-center gap-3 flex-shrink-0">
             {user ? (
               <div className="relative" ref={userMenuRef}>
@@ -104,7 +104,7 @@ export default function Header() {
                         onClick={async () => { await signOut(); setUserMenuOpen(false); }}
                         className="w-full text-left px-3 py-2 text-sm text-red-400 hover:bg-red-500/10 rounded-xl cursor-pointer bg-transparent border-none transition-colors"
                       >
-                        Вийти
+                        {t.nav.logout}
                       </button>
                     </div>
                   </div>
@@ -116,22 +116,21 @@ export default function Header() {
                   onClick={openLogin}
                   className="text-sm font-semibold text-[var(--text-muted)] hover:text-white transition-colors bg-transparent border-none cursor-pointer px-3 py-2"
                 >
-                  Увійти
+                  {t.nav.login}
                 </button>
                 <button
                   onClick={openRegister}
                   className="text-sm font-bold bg-gradient-to-r from-[var(--primary-dark)] to-[var(--primary)] text-white rounded-full px-4 py-2 cursor-pointer border-none hover:opacity-90 transition-opacity"
                 >
-                  Реєстрація
+                  {t.nav.register}
                 </button>
               </div>
             )}
 
-            {/* Mobile burger */}
             <button
               className="lg:hidden flex flex-col gap-1.5 p-2 bg-transparent border-none cursor-pointer"
               onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Menu"
+              aria-label={t.nav.menu}
             >
               <span className="w-5 h-0.5 bg-white rounded" />
               <span className="w-5 h-0.5 bg-white rounded" />
@@ -140,7 +139,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Mobile menu */}
         {menuOpen && (
           <div className="lg:hidden border-t border-[var(--border)] bg-[rgba(3,2,13,0.97)] px-6 py-4 flex flex-col gap-3">
             {navLinks.map(link => (
@@ -161,7 +159,7 @@ export default function Header() {
                   onClick={async () => { await signOut(); setMenuOpen(false); }}
                   className="text-left text-sm text-red-400 bg-transparent border-none cursor-pointer py-2"
                 >
-                  Вийти
+                  {t.nav.logout}
                 </button>
               ) : (
                 <>
@@ -169,13 +167,13 @@ export default function Header() {
                     onClick={() => { openLogin(); setMenuOpen(false); }}
                     className="text-left text-base font-semibold text-[var(--text-secondary)] bg-transparent border-none cursor-pointer py-2"
                   >
-                    Увійти
+                    {t.nav.login}
                   </button>
                   <button
                     onClick={() => { openRegister(); setMenuOpen(false); }}
                     className="text-left text-base font-bold text-[var(--accent)] bg-transparent border-none cursor-pointer py-2"
                   >
-                    Реєстрація
+                    {t.nav.register}
                   </button>
                 </>
               )}
@@ -188,6 +186,7 @@ export default function Header() {
         open={authOpen}
         initialMode={authMode}
         onClose={() => setAuthOpen(false)}
+        locale={locale}
       />
     </>
   );
