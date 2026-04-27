@@ -23,6 +23,7 @@
         "NSMicrophoneUsageDescription": "Потрібно для голосового вводу в AI-чаті.",
         "NSCameraUsageDescription": "Потрібно для AI-сканування обличчя у функції «Вище Я».",
         "NSPhotoLibraryUsageDescription": "Потрібно для вибору фото у функції «AI-сканування Долі».",
+        "NSUserTrackingUsageDescription": "Ми використовуємо аналітику для покращення вашого досвіду в додатку. Ваші дані не передаються третім особам для реклами.",
         "UIBackgroundModes": [
           "audio"
         ],
