@@ -42,7 +42,7 @@ export async function askClaudeStream(
   const noMarkdown = '\n\nФОРМАТ: Пиши ТІЛЬКИ простим текстом. ЗАБОРОНЕНО зірочки (*), маркдаун.';
 
   const body = {
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-haiku-4-5',
     max_tokens: maxTokens,
     system: systemPrompt + levelInstruction + noMarkdown,
     messages,
@@ -132,7 +132,7 @@ export async function askClaude(
 
   const noMarkdown = '\n\nФОРМАТ: Пиши ТІЛЬКИ простим текстом. ЗАБОРОНЕНО використовувати зірочки (*), маркдаун, **жирний**, *курсив*. Для виділення використовуй ВЕЛИКІ ЛІТЕРИ або емодзі.';
   const body = {
-    model: 'claude-sonnet-4-20250514',
+    model: 'claude-haiku-4-5',
     max_tokens: maxTokens,
     system: systemPrompt + levelInstruction + noMarkdown,
     messages,

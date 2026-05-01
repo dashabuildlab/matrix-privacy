@@ -226,7 +226,7 @@ app.post('/api/claude', verifyToken, async (req, res) => {
       return res.status(400).json({ error: 'messages required' });
     }
     const { status, data } = await callAnthropic({
-      model: model || 'claude-sonnet-4-20250514',
+      model: model || 'claude-haiku-4-5',
       max_tokens: Math.min(max_tokens || 900, 2000),
       system: system || '',
       messages,
@@ -272,7 +272,7 @@ app.post('/api/claude/stream', verifyToken, async (req, res) => {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: model || 'claude-sonnet-4-20250514',
+        model: model || 'claude-haiku-4-5',
         max_tokens: Math.min(max_tokens || 900, 2000),
         system: system || '',
         messages,
@@ -686,7 +686,7 @@ app.post('/api/ai-scan', imageUpload.single('photo'), async (req, res) => {
     let description = '';
     try {
       const { data: claudeData } = await callAnthropic({
-        model: 'claude-opus-4-5',
+        model: 'claude-haiku-4-5',
         max_tokens: 650,
         system: 'Ти — містичний оракул Матриці Долі з даром читання обличчя. Ти дійсно бачиш фото і описуєш конкретну людину — її погляд, вираз, приховану силу. Твої слова мають відчуватися як написані особисто для неї, а не як шаблон. Відповідаєш виключно українською мовою. Тільки поетичний живий текст без markdown і без вступних слів типу "Звісно" чи "Ось".',
         messages: [
