@@ -21,7 +21,7 @@ import { useAppStore } from '@/stores/useAppStore';
 import { trackFeatureUsed, FEATURES, trackEarnCurrency, trackPushLandingView, trackPushClaimFailed, trackPushExpiredView } from '@/lib/analytics';
 import { useI18n } from '@/lib/i18n';
 import { getLastTabPress } from '@/lib/tabState';
-import { useResponsive } from '@/hooks/useResponsive';
+import { useResponsive, MAX_CONTENT_WIDTH } from '@/hooks/useResponsive';
 import { askClaude } from '@/lib/claude';
 import { GIFT_DIAMONDS } from '@/lib/notifications';
 
@@ -31,7 +31,7 @@ export default function TodayScreen() {
   const router = useRouter();
   const { t, locale } = useI18n();
   const langInstr = locale === 'uk' ? 'Відповідай УКРАЇНСЬКОЮ.' : 'Respond ONLY in English. Never use Russian.';
-  const { isDesktop, isTablet, isWeb, height: SCREEN_H, diagramSize } = useResponsive();
+  const { isWide: wide, isWeb, height: SCREEN_H, diagramSize } = useResponsive();
   const today = new Date();
 
   const dailyEnergy = getDailyEnergy(today);
@@ -121,8 +121,6 @@ export default function TodayScreen() {
     weekday: 'long', day: 'numeric', month: 'long',
   });
   const capitalDate = dateStr.charAt(0).toUpperCase() + dateStr.slice(1);
-  const wide = isDesktop || isTablet;
-
   // ── Avatar Modal ─────────────────────────────────────────────────
   const [avatarModalVisible, setAvatarModalVisible] = useState(false);
   const [avatarPhase, setAvatarPhase] = useState<'start' | 'loop'>('start');
@@ -316,7 +314,7 @@ Write a summary of the daily matrix (3-4 sentences). ALWAYS compare with the use
       <View style={styles.modalOverlay}>
         {/* Backdrop — closes modal when tapped outside */}
         <TouchableOpacity style={StyleSheet.absoluteFillObject} onPress={closeModal} activeOpacity={1} />
-        <Animated.View style={[styles.modalAnimBox, { opacity: modalOpacity, transform: [{ scale: modalScale }] }]}>
+        <Animated.View style={[styles.modalAnimBox, { height: SCREEN_H * 0.68, opacity: modalOpacity, transform: [{ scale: modalScale }] }]}>
           {/* Close button */}
           <TouchableOpacity style={styles.modalCloseBtn} onPress={closeModal}>
             <Ionicons name="close" size={22} color="#FFF" />
@@ -371,7 +369,7 @@ Write a summary of the daily matrix (3-4 sentences). ALWAYS compare with the use
 
             {/* Matrix diagram */}
             <Animated.View style={[styles.modalMatrixWrap, { opacity: matrixAnim, transform: [{ scale: matrixScale }] }]}>
-              <MatrixDiagram data={dailyMatrix} size={Math.min(SCREEN_H * 0.38, 360)} />
+              <MatrixDiagram data={dailyMatrix} size={diagramSize} />
             </Animated.View>
 
             {/* AI Summary */}
@@ -588,7 +586,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   scroll: { flex: 1 },
   content: { padding: Spacing.lg, paddingBottom: 20 },
-  contentWide: { paddingHorizontal: Spacing.xl, paddingBottom: Spacing.xl, maxWidth: 680, alignSelf: 'center', width: '100%' },
+  contentWide: { paddingHorizontal: Spacing.xl, paddingBottom: Spacing.xl, maxWidth: MAX_CONTENT_WIDTH, alignSelf: 'center', width: '100%' },
 
   // Greeting
   greetingRow: {
@@ -732,7 +730,7 @@ const styles = StyleSheet.create({
 
   // Modal transition
   modalOverlay: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 16 },
-  modalAnimBox: { width: '92%', height: SCREEN_H * 0.68, backgroundColor: '#0D0B1E', borderRadius: BorderRadius.xl, overflow: 'hidden' },
+  modalAnimBox: { width: '92%', backgroundColor: '#0D0B1E', borderRadius: BorderRadius.xl, overflow: 'hidden' },
   avatarModalBox: { flex: 1 },
   modalCloseBtn: {
     position: 'absolute', top: 12, right: 12, zIndex: 10,

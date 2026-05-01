@@ -14,7 +14,7 @@ import { Card } from '@/components/ui/Card';
 import { useI18n } from '@/lib/i18n';
 import { getLastTabPress } from '@/lib/tabState';
 import { StarBackground } from '@/components/ui/StarBackground';
-import { useResponsive } from '@/hooks/useResponsive';
+import { useResponsive, MAX_CONTENT_WIDTH } from '@/hooks/useResponsive';
 
 // ── Data ────────────────────────────────────────────────────────────────────
 
@@ -71,8 +71,7 @@ export default function LearnScreen() {
   const { t, locale } = useI18n();
   const router = useRouter();
   const isUk = locale === 'uk';
-  const { isDesktop, isTablet } = useResponsive();
-  const wide = isDesktop || isTablet;
+  const { isWide: wide } = useResponsive();
   const ENCYCLOPEDIA = getEncyclopedia(isUk);
   const GAMES = getGames(isUk);
   const TESTS = getTests(isUk);
@@ -235,7 +234,7 @@ export default function LearnScreen() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   content: { padding: Spacing.lg, paddingBottom: 40 },
-  contentWide: { padding: Spacing.xl, paddingBottom: 40, maxWidth: 680, alignSelf: 'center', width: '100%' },
+  contentWide: { padding: Spacing.xl, paddingBottom: 40, maxWidth: MAX_CONTENT_WIDTH, alignSelf: 'center', width: '100%' },
 
   // Hero
   heroCard: {

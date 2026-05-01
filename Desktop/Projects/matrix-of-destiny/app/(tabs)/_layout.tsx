@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { View, StyleSheet, Platform, Animated, Easing } from 'react-native';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -63,19 +63,21 @@ export default function TabLayout() {
    * "Mobile web" needs slightly different tab-bar padding (no iOS safe-area
    * insets on web). On native (phone or iPad), we rely on useSafeAreaInsets.
    */
-  const isMobileWeb = isWeb && isMobile;
+  // Web mobile needs different padding (no native safe-area insets).
+  const isMobileWeb   = isWeb && isMobile;
+  const bottomInset   = insets.bottom;
 
-  const bottomInset = insets.bottom;
-  const tabBarStyle = showSidebar
-    ? ({ display: 'none' } as const)
-    : {
-        backgroundColor: '#100C28',
-        borderTopColor: 'rgba(245,197,66,0.18)',
-        borderTopWidth: 1,
-        paddingBottom: isMobileWeb ? 12 : Math.max(bottomInset, 8),
-        paddingTop: 8,
-        height: isMobileWeb ? 64 : (60 + Math.max(bottomInset, 8)),
-      };
+  const tabBarStyle = useMemo(() => {
+    if (showSidebar) return { display: 'none' } as const;
+    return {
+      backgroundColor: '#100C28',
+      borderTopColor:  'rgba(245,197,66,0.18)',
+      borderTopWidth:  1,
+      paddingBottom:   isMobileWeb ? 12 : Math.max(bottomInset, 8),
+      paddingTop:      8,
+      height:          isMobileWeb ? 64 : (60 + Math.max(bottomInset, 8)),
+    };
+  }, [showSidebar, isMobileWeb, bottomInset]);
 
   return (
     <View style={styles.root}>

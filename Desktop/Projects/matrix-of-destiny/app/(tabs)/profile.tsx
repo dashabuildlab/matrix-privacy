@@ -9,7 +9,7 @@ import {
   Platform,
   Modal,
 } from 'react-native';
-import { useResponsive } from '@/hooks/useResponsive';
+import { useResponsive, MAX_CONTENT_WIDTH } from '@/hooks/useResponsive';
 import { Ionicons } from '@expo/vector-icons';
 import { router, useFocusEffect } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -25,8 +25,7 @@ const XP_PER_LEVEL = 500;
 export default function ProfileScreen() {
   const scrollRef = useRef<ScrollView>(null);
   const insets = useSafeAreaInsets();
-  const { isDesktop, isTablet } = useResponsive();
-  const wide = isDesktop || isTablet;
+  const { isWide: wide } = useResponsive();
   const isPremium = useAppStore((s) => s.isPremium);
   const userName = useAppStore((s) => s.userName);
   const userBirthDate = useAppStore((s) => s.userBirthDate);
@@ -397,7 +396,7 @@ const styles = StyleSheet.create({
   },
   streakRewardText: { color: Colors.accent, fontSize: FontSize.xs },
   content: { paddingBottom: 20, paddingHorizontal: Spacing.md },
-  contentWide: { padding: Spacing.xl, paddingBottom: Spacing.xl, maxWidth: 680, alignSelf: 'center', width: '100%' },
+  contentWide: { padding: Spacing.xl, paddingBottom: Spacing.xl, maxWidth: MAX_CONTENT_WIDTH, alignSelf: 'center', width: '100%' },
 
   // Two-column layout
   twoColRow: {

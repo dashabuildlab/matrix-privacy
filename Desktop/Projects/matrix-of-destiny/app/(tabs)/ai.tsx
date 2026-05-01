@@ -12,6 +12,9 @@ import { useAppStore } from '@/stores/useAppStore';
 import { useI18n } from '@/lib/i18n';
 import { getLastTabPress } from '@/lib/tabState';
 import { useResponsive } from '@/hooks/useResponsive';
+
+/** AI/chat screens benefit from more horizontal space than content screens */
+const MAX_CHAT_WIDTH = 860;
 import { getSessionsSync, type SessionRow } from '@/lib/chatDb';
 
 const STARTER_ICONS = [
@@ -50,10 +53,10 @@ export default function AIScreen() {
   const isPremium = useAppStore((s) => s.isPremium);
   const [chatSessions, setChatSessions] = useState<SessionRow[]>([]);
   const [historyOpen, setHistoryOpen] = useState(false);
-  const { isDesktop, isTablet } = useResponsive();
+  const { isWide } = useResponsive();
 
   useEffect(() => { setChatSessions(getSessionsSync(10)); }, []);
-  const wide = isDesktop || isTablet;
+  const wide = isWide;
 
   const pendingChatNav = useAppStore((s) => s.pendingChatNav);
   const setPendingChatNav = useAppStore((s) => s.setPendingChatNav);
@@ -313,7 +316,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   scroll: { flex: 1 },
   content: { padding: Spacing.lg, paddingBottom: 32 },
-  contentWide: { paddingHorizontal: Spacing.xl, maxWidth: 860, alignSelf: 'center', width: '100%' },
+  contentWide: { paddingHorizontal: Spacing.xl, maxWidth: MAX_CHAT_WIDTH, alignSelf: 'center', width: '100%' },
 
   // ── Page header ──
   pageHeader: { marginBottom: Spacing.lg },

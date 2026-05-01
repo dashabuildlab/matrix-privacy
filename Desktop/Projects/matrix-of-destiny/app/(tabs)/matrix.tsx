@@ -20,15 +20,14 @@ import { getDailyEnergy, calculateMatrix } from '@/lib/matrix-calc';
 import { useAppStore } from '@/stores/useAppStore';
 import { useI18n } from '@/lib/i18n';
 import { getLastTabPress } from '@/lib/tabState';
-import { useResponsive } from '@/hooks/useResponsive';
+import { useResponsive, MAX_CONTENT_WIDTH } from '@/hooks/useResponsive';
 import { trackFeatureUsed, FEATURES, trackPushClaimTap, trackPushClaimSuccess, trackPushExpiredView } from '@/lib/analytics';
 
 export default function MatrixScreen() {
   const scrollRef = useRef<ScrollView>(null);
   const router = useRouter();
   const { t, locale } = useI18n();
-  const { isDesktop, isTablet, diagramSize } = useResponsive();
-  const wide = isDesktop || isTablet;
+  const { isWide: wide, diagramSize } = useResponsive();
   const savedMatrices = useAppStore((s) => s.savedMatrices);
   const personalMatrix = useAppStore((s) => s.personalMatrix);
   const matrixGenerated = useAppStore((s) => s.matrixGenerated);
@@ -83,7 +82,7 @@ export default function MatrixScreen() {
           {locale === 'uk' ? '✦ МАТРИЦЯ ДОЛІ ✦' : '✦ DESTINY MATRIX ✦'}
         </Text>
         <View style={{ position: 'relative' }}>
-          {demoMatrix && <MatrixDiagram data={demoMatrix} size={diagramSize(Spacing.lg * 4)} />}
+          {demoMatrix && <MatrixDiagram data={demoMatrix} size={diagramSize} />}
           {/* Blur overlay */}
           <View style={[StyleSheet.absoluteFill, { zIndex: 1 }]} pointerEvents="none">
             <LinearGradient
@@ -129,7 +128,7 @@ export default function MatrixScreen() {
         <Text style={{ color: Colors.accent, fontSize: FontSize.xs, fontWeight: '800', letterSpacing: 3, marginBottom: 4 }}>{locale === 'uk' ? '✦ МАТРИЦЯ ДОЛІ ✦' : '✦ DESTINY MATRIX ✦'}</Text>
         <Text style={{ color: Colors.text, fontSize: FontSize.lg, fontWeight: '700', marginBottom: 4 }}>{userName}</Text>
         <Text style={{ color: Colors.textMuted, fontSize: FontSize.xs, marginBottom: Spacing.md }}>{userBirthDate}</Text>
-        <MatrixDiagram data={personalMatrix} size={diagramSize(Spacing.lg * 4)} />
+        <MatrixDiagram data={personalMatrix} size={diagramSize} />
       </Card>
 
       {/* Завантажити аналіз */}
@@ -356,7 +355,7 @@ const styles = StyleSheet.create({
   root: { flex: 1 },
   container: { flex: 1 },
   content: { padding: Spacing.lg, paddingBottom: 20 },
-  contentWide: { padding: 28, paddingBottom: 40, maxWidth: 680, alignSelf: 'center', width: '100%' },
+  contentWide: { padding: 28, paddingBottom: 40, maxWidth: MAX_CONTENT_WIDTH, alignSelf: 'center', width: '100%' },
 
   // ── Two-column layout ────────────────────────────────────
   twoColRow: {

@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { usePathname, router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -13,32 +14,12 @@ export function WebSidebar() {
   const isUk = locale === 'uk';
   const insets = useSafeAreaInsets();
 
-  const NAV_ITEMS = [
-    {
-      label: isUk ? 'Сьогодні' : 'Today',
-      icon: 'home-outline'  as const,
-      iconActive: 'home'    as const,
-      route: '/',
-    },
-    {
-      label: isUk ? 'Матриця' : 'Matrix',
-      icon: 'sparkles-outline'  as const,
-      iconActive: 'sparkles'    as const,
-      route: '/matrix',
-    },
-    {
-      label: isUk ? 'Навчання' : 'Learn',
-      icon: 'school-outline'  as const,
-      iconActive: 'school'    as const,
-      route: '/learn',
-    },
-    {
-      label: isUk ? 'Профіль' : 'Profile',
-      icon: 'person-outline'  as const,
-      iconActive: 'person'    as const,
-      route: '/profile',
-    },
-  ];
+  const NAV_ITEMS = useMemo(() => [
+    { label: isUk ? 'Сьогодні' : 'Today',    icon: 'home-outline'     as const, iconActive: 'home'     as const, route: '/'        },
+    { label: isUk ? 'Матриця'  : 'Matrix',    icon: 'sparkles-outline' as const, iconActive: 'sparkles' as const, route: '/matrix'  },
+    { label: isUk ? 'Навчання' : 'Learn',     icon: 'school-outline'   as const, iconActive: 'school'   as const, route: '/learn'   },
+    { label: isUk ? 'Профіль'  : 'Profile',   icon: 'person-outline'   as const, iconActive: 'person'   as const, route: '/profile' },
+  ], [isUk]);
 
   const isActive = (route: string) => {
     if (route === '/') return pathname === '/';
