@@ -339,6 +339,24 @@ export default function ProfileScreen() {
       </Modal>
 
       <Text style={styles.version}>{t.profile.version}</Text>
+
+      {/* ── DEV: quick premium toggle ── */}
+      {__DEV__ && (
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => {
+            const store = useAppStore.getState();
+            const next = !store.isPremium;
+            store.setPremium(next, next ? 'yearly' : undefined);
+            Alert.alert('DEV', next ? '✅ Premium ON' : '🚫 Premium OFF');
+          }}
+          style={styles.devBtn}
+        >
+          <Text style={styles.devBtnText}>
+            {isPremium ? '🚫 Revoke Premium' : '⭐ Grant Premium'} (DEV)
+          </Text>
+        </TouchableOpacity>
+      )}
     </>
   );
 
@@ -606,4 +624,16 @@ const styles = StyleSheet.create({
   deleteModalBtnText: { color: '#fff', fontSize: FontSize.md, fontWeight: '700' },
   deleteModalCancel: { alignSelf: 'center', paddingVertical: Spacing.sm },
   deleteModalCancelText: { color: Colors.textMuted, fontSize: FontSize.sm, fontWeight: '600' },
+
+  devBtn: {
+    alignSelf: 'center',
+    marginTop: Spacing.sm,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: 6,
+    borderRadius: BorderRadius.full,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.12)',
+    backgroundColor: 'rgba(255,255,255,0.04)',
+  },
+  devBtnText: { color: 'rgba(255,255,255,0.35)', fontSize: 11, fontWeight: '600' },
 });
